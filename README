@@ -1,0 +1,23 @@
+
+Rezolvarea problemei 2, problema patrat:
+Complexitate: O(N log N).
+
+Solutia care ar forma toate sumele ar avea complexitate O(N^2) si nu ar intra in limitele de timp.
+Am rezolvat problema fara a calcula cele N^2 sume, cautand binar suma cu indicele k astfel:
+
+- sortez vectorul si formez doua sume, suma minima egala cu dublui primului element din vector si
+  suma maxima egala cu dublul ultimul numar din vector.
+- stiu ca suma cautata este intre cele doua sume, suma maxima si suma minima si aplic o cautare binara:
+  -iau mijlocul acestui interval si calculez numarul de sume care se afla la stanga mijlocului,
+   daca acest numar este mai mare decat k, atunci suma cautata este mai mica decat suma mijlocie, 
+   altfel suma cautata este mai mare decat suma mijlocie.
+  
+-calcului numarului de sume mai mici decat suma din mijloc il incepand cu 2 indici, primul indice porneste
+ de la inceputul vectorului, iar al doilea porneste de la sfarsitul vectorului.
+  -fie acesti indecsi i respectiv j:
+    - cat timp suma elementelor de pe aceste pozitii este mai mare decat suma mijlocie scad indicele j, 
+      apoi am ajuns pe o pozitie j despre care stiu ca toate elementele de pe pozitiile j, j-1...0 adunate
+      cu elementul de pe pozitia i dau o suma mai mica decat suma mijlocie, deci adun j+1 la contor.
+    -incrementez indicele i si reiau procedeul de mai sus
+  Aceasta functie, "public static long count(long mSum)" are complexitate Theta(N) si este apelata in 
+timpul cautarii binare, deci complexitatea finala este O(N log N).
